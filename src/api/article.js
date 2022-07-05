@@ -2,7 +2,15 @@ import request from '@/utils/request'
 
 export function fetchList(query) {
   return request({
-    url: '/vue-element-admin/article/list',
+    url: '/article/list',
+    method: 'get',
+    params: query
+  })
+}
+
+export function fetchTmpList(query) {
+  return request({
+    url: '/article/tmp-list',
     method: 'get',
     params: query
   })
@@ -10,7 +18,15 @@ export function fetchList(query) {
 
 export function fetchArticle(id) {
   return request({
-    url: '/vue-element-admin/article/detail',
+    url: '/article/detail',
+    method: 'get',
+    params: { id }
+  })
+}
+
+export function deleteArticle(id) {
+  return request({
+    url: '/article/delete',
     method: 'get',
     params: { id }
   })
@@ -24,9 +40,17 @@ export function fetchPv(pv) {
   })
 }
 
-export function createArticle(data) {
+export function saveArticle(data) {
   return request({
-    url: '/vue-element-admin/article/create',
+    url: '/article/save',
+    method: 'post',
+    data
+  })
+}
+
+export function tmpSaveArticle(data) {
+  return request({
+    url: '/article/tmp-save',
     method: 'post',
     data
   })
