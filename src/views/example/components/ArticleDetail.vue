@@ -24,24 +24,24 @@
               <el-row>
                 <el-col :span="8">
                   <el-form-item label-width="60px" label="作者:" class="postInfo-container-item">
-                    <el-input v-model="postForm.author"/>
+                    <el-input v-model="postForm.author" />
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label-width="60px" label="类型:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.categories"/>
+                    <el-input v-model="postForm.categories" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="8">
                   <el-form-item label-width="60px" label="时间:" class="postInfo-container-item">
-                    <el-date-picker v-model="displayTime" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="请选择一个时间"/>
+                    <el-date-picker v-model="displayTime" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="请选择一个时间" />
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label-width="60px" label="标签:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.tags"/>
+                    <el-input v-model="postForm.tags" />
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -50,12 +50,12 @@
         </el-row>
 
         <el-form-item style="margin-bottom: 40px;" label-width="100px" label="关键词:">
-          <el-input v-model="postForm.keyWords" :rows="1" type="textarea" class="article-textarea" autosize placeholder="请输入文章关键词"/>
+          <el-input v-model="postForm.keyWords" :rows="1" type="textarea" class="article-textarea" autosize placeholder="请输入文章关键词" />
           <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
         </el-form-item>
 
         <el-form-item style="margin-bottom: 40px;" label-width="100px" label="封面图片url:">
-          <el-input v-model="postForm.cover" :rows="1" type="textarea" class="article-textarea" autosize placeholder="请输入封面图片url"/>
+          <el-input v-model="postForm.cover" :rows="1" type="textarea" class="article-textarea" autosize placeholder="请输入封面图片url" />
           <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
         </el-form-item>
 
@@ -64,13 +64,13 @@
             <Toolbar
               style="border-bottom: 1px solid #ccc"
               :editor="editor"
-              :defaultConfig="toolbarConfig"
+              :default-config="toolbarConfig"
               :mode="mode"
             />
             <Editor
-              style="height: 700px; overflow-y: hidden;"
               v-model="postForm.content"
-              :defaultConfig="editorConfig"
+              style="height: 700px; overflow-y: hidden;"
+              :default-config="editorConfig"
               :mode="mode"
               @onCreated="onCreated"
             />
@@ -109,7 +109,7 @@ const defaultForm = {
 
 export default {
   name: 'ArticleDetail',
-  components: { Tinymce, MDinput, Sticky, Editor, Toolbar},
+  components: { Tinymce, MDinput, Sticky, Editor, Toolbar },
   props: {
     isEdit: {
       type: Boolean,
@@ -161,12 +161,12 @@ export default {
       editorConfig: {
         placeholder: '请输入内容...',
         MENU_CONF: {
-          uploadImage : {
+          uploadImage: {
             base64LimitSize: 5 * 1024 * 1024// 5kb
           }
         }
       },
-      mode: 'default', // or 'simple'
+      mode: 'default' // or 'simple'
     }
   },
   computed: {

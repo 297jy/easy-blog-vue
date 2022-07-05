@@ -5,12 +5,12 @@
         id="editor-toolbar"
         style="border-bottom: 1px solid #ccc"
         :editor="editor"
-        :defaultConfig="toolbarConfig"
+        :default-config="toolbarConfig"
       />
     </div>
     <div id="content">
       <div style="margin-left: 50px;float: left;position: absolute;width: 15%">
-        <el-button @click="updateArticle" v-loading="updateButtonLoading" class="el-button--success" style="margin-bottom: 20px">
+        <el-button v-loading="updateButtonLoading" class="el-button--success" style="margin-bottom: 20px" @click="updateArticle">
           保存
         </el-button>
         <!--
@@ -22,15 +22,15 @@
       <div id="editor-container">
         <div id="title-container">
           <label>
-            <input placeholder="请输入标题" v-model="postForm.title">
+            <input v-model="postForm.title" placeholder="请输入标题">
           </label>
         </div>
         <!-- 编辑器 -->
         <Editor
           id="editor-text-area"
-          :defaultConfig="editorConfig"
-          v-model="postForm.content"
           ref="test"
+          v-model="postForm.content"
+          :default-config="editorConfig"
           @onChange="onChange"
           @onCreated="onCreated"
         />
@@ -129,7 +129,7 @@ export default {
             base64LimitSize: 10 * 1024 * 1024 // 10M 以下插入 base64
           }
         }**/
-      },
+      }
       /**
       data: [{
         label: '一级 1',
@@ -178,6 +178,20 @@ export default {
         test: 'test'
       }**/
     }
+  },
+  mounted() {
+    document.getElementById('editor-text-area').addEventListener('click', e => {
+      if (e.target.id === 'editor-text-area') {
+        this.editor.focus(true) // focus 到末尾
+      }
+    })
+  },
+  beforeDestroy() {
+    // 页面销毁前，再提交1次
+    this.saveTmpArticleIfNecessary()
+    const editor = this.editor
+    if (editor == null) return
+    editor.destroy() // 组件销毁时，及时销毁 editor ，重要！！！
   },
   methods: {
     /**
@@ -285,20 +299,6 @@ export default {
     buildMenu(headers, nowType, cur) {
 
     },**/
-  },
-  mounted() {
-    document.getElementById('editor-text-area').addEventListener('click', e => {
-      if (e.target.id === 'editor-text-area') {
-        this.editor.focus(true) // focus 到末尾
-      }
-    })
-  },
-  beforeDestroy() {
-    // 页面销毁前，再提交1次
-    this.saveTmpArticleIfNecessary()
-    const editor = this.editor
-    if (editor == null) return
-    editor.destroy() // 组件销毁时，及时销毁 editor ，重要！！！
   }
 }
 </script>

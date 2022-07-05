@@ -9,77 +9,77 @@
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="头像:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.avatar"/>
+                    <el-input v-model="postForm.avatar" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="用户名:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.username"/>
+                    <el-input v-model="postForm.username" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="密码:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.password"/>
+                    <el-input v-model="postForm.password" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="网站介绍:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.introduction"/>
+                    <el-input v-model="postForm.introduction" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="加密私钥:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.authSecret"/>
+                    <el-input v-model="postForm.authSecret" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="令牌存放路径:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.tokenPath"/>
+                    <el-input v-model="postForm.tokenPath" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="文章存放路径:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.hexoSourcePath"/>
+                    <el-input v-model="postForm.hexoSourcePath" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="文章暂存路径:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.hexoTmpSourcePath"/>
+                    <el-input v-model="postForm.hexoTmpSourcePath" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="文章废弃路径:" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.hexoRemoveSourcePath"/>
+                    <el-input v-model="postForm.hexoRemoveSourcePath" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="登录过期时间(秒):" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.tokenExpireSeconds"/>
+                    <el-input v-model="postForm.tokenExpireSeconds" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="18">
                   <el-form-item label-width="180px" label="文章自动保存时间间隔(秒):" class="postInfo-container-item" style="width: 100%">
-                    <el-input v-model="postForm.autoSaveArticleTimeIntervalSeconds"/>
+                    <el-input v-model="postForm.autoSaveArticleTimeIntervalSeconds" />
                   </el-form-item>
                 </el-col>
               </el-row>

@@ -17,7 +17,7 @@
       <el-table-column min-width="200px" label="类型">
         <template slot-scope="{row}">
           <template v-if="row.edit">
-            <el-input v-model="row.categories" class="edit-input"/>
+            <el-input v-model="row.categories" class="edit-input" />
           </template>
           <span v-else>{{ row.categories }}</span>
         </template>
@@ -25,7 +25,7 @@
       <el-table-column min-width="200px" label="标签">
         <template slot-scope="{row}">
           <template v-if="row.edit">
-            <el-input v-model="row.tags" class="edit-input"/>
+            <el-input v-model="row.tags" class="edit-input" />
           </template>
           <span v-else>{{ row.tags }}</span>
         </template>
@@ -33,7 +33,7 @@
       <el-table-column min-width="200px" label="封面图片">
         <template slot-scope="{row}">
           <template v-if="row.edit">
-            <el-input v-model="row.cover" class="edit-input"/>
+            <el-input v-model="row.cover" class="edit-input" />
           </template>
           <span v-else>{{ row.cover }}</span>
         </template>
@@ -85,7 +85,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList"/>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 

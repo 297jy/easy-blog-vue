@@ -1,5 +1,5 @@
 <template>
-  <tencent-editor ref="tencentEditor" :is-edit="true"/>
+  <tencent-editor ref="tencentEditor" :is-edit="true" />
 </template>
 
 <script>
