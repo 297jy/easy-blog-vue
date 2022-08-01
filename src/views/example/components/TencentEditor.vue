@@ -8,11 +8,16 @@
         :default-config="toolbarConfig"
       />
     </div>
+    <el-button
+      v-loading="updateButtonLoading"
+      class="el-button--success"
+      style="margin-bottom: 20px;float: left"
+      @click="updateArticle"
+    >
+      保存
+    </el-button>
     <div id="content">
       <div style="margin-left: 50px;float: left;position: absolute;width: 15%">
-        <el-button v-loading="updateButtonLoading" class="el-button--success" style="margin-bottom: 20px" @click="updateArticle">
-          保存
-        </el-button>
         <!--
         <div style="border-bottom: 1px solid #e8e8e8;height: 40px;line-height: 40px;position: relative;width: 100%">
           大纲
@@ -110,6 +115,7 @@ export default {
           },
           'lineHeight', '|', 'todo', 'emotion', 'insertLink', 'blockquote', 'divider',
           'codeBlock',
+          'uploadImage',
           {
             key: 'group-insert-more', // 必填，要以 group 开头
             title: '插入', // 必填
@@ -120,18 +126,19 @@ export default {
       },
       editorConfig: {
         placeholder: '请输入内容...',
-        scroll: true
+        scroll: false,
         // 所有的菜单配置，都要在 MENU_CONF 属性下
-        /**
-         MENU_CONF: {
+        MENU_CONF: {
           uploadImage: {
-            fieldName: 'your-fileName',
+            // fieldName: 'your-fileName',
+            uploadImgShowBase64: true,
             base64LimitSize: 10 * 1024 * 1024 // 10M 以下插入 base64
           }
-        }**/
+        },
+        uploadImgShowBase64: true
       }
       /**
-      data: [{
+       data: [{
         label: '一级 1',
         children: [{
           label: '二级 1-1',
@@ -172,7 +179,7 @@ export default {
           }]
         }]
       }],
-      defaultProps: {
+       defaultProps: {
         children: 'children',
         label: 'label',
         test: 'test'
@@ -199,11 +206,11 @@ export default {
      */
     saveTmpArticleIfNecessary() {
       /**
-      const nowTime = new Date().getTime() / 1000
-      if (this.lastChangeTime === null) {
+       const nowTime = new Date().getTime() / 1000
+       if (this.lastChangeTime === null) {
         this.lastChangeTime = nowTime
       }
-      if ((nowTime - this.lastChangeTime) >= this.autoSaveInterval) {
+       if ((nowTime - this.lastChangeTime) >= this.autoSaveInterval) {
         tmpSaveArticle(this.postForm).then(response => {
           this.postForm.id = response.data
           this.lastChangeTime = nowTime
@@ -233,16 +240,16 @@ export default {
     },
     updateArticle() {
       /**
-      const editor = this.$refs.tencentEditor.editor
-      if (editor === null) {
+       const editor = this.$refs.tencentEditor.editor
+       if (editor === null) {
         return
       }
-      this.$message({
+       this.$message({
         message: '内容发布成功',
         type: 'success'
       })
-      console.log('html:' + editor.getHtml())
-      this.$router.push({ path: '/' })**/
+       console.log('html:' + editor.getHtml())
+       this.$router.push({ path: '/' })**/
       this.loading = true
       saveArticle(this.postForm).then(response => {
         this.$notify({
@@ -262,6 +269,7 @@ export default {
     },
     onCreated(editor) {
       this.editor = Object.seal(editor) // 【注意】一定要用 Object.seal() 否则会报错
+      // console.log(editor.getAllMenuKeys())
       if (this.isEdit) {
         const id = this.$route.params && this.$route.params.id
         this.fetchData(id)
@@ -282,7 +290,7 @@ export default {
       // window.scrollTo(0, document.documentElement.scrollHeight)
       console.log('onChange', editor.getHtml()) // onChange 时获取编辑器最新内容
 
-      this.renderMenu(editor)
+      // this.renderMenu(editor)
       this.saveTmpArticleIfNecessary()
     },
     renderMenu(editor) {
@@ -296,7 +304,7 @@ export default {
       return data.test !== true
     }
     /**
-    buildMenu(headers, nowType, cur) {
+     buildMenu(headers, nowType, cur) {
 
     },**/
   }
@@ -316,7 +324,11 @@ export default {
 }
 
 #content {
-  height: calc(100% - 40px);
+  height: calc(90vh - 60px);
+  /**
+  height: calc(100% - 60px);
+   */
+  overflow-y: auto;
   position: relative;
 }
 

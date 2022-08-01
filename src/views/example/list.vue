@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { createArticle, deleteArticle, fetchList } from '@/api/article'
+import { saveArticle, deleteArticle, fetchList } from '@/api/article'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
@@ -158,13 +158,12 @@ export default {
       })
     },
     updateArticleInfo(row) {
-      createArticle({
+      saveArticle({
         'id': row.id,
         'tags': row.tags,
         'categories': row.categories,
         'cover': row.cover
       }).then(response => {
-        this.postForm.id = response.data
       }).catch(err => {
         console.log(err)
       })

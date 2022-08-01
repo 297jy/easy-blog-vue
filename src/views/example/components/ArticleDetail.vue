@@ -82,11 +82,10 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce'
 import MDinput from '@/components/MDinput'
 import Sticky from '@/components/Sticky' // 粘性header组件
 import { validURL } from '@/utils/validate'
-import { createArticle, fetchArticle, tmpSaveArticle } from '@/api/article'
+import { saveArticle, fetchArticle, tmpSaveArticle } from '@/api/article'
 import { fetchSystemSetting } from '@/api/user'
 import { searchUser } from '@/api/remote-search'
 import '@wangeditor/editor/dist/css/style.css'
@@ -109,7 +108,7 @@ const defaultForm = {
 
 export default {
   name: 'ArticleDetail',
-  components: { Tinymce, MDinput, Sticky, Editor, Toolbar },
+  components: { MDinput, Sticky, Editor, Toolbar },
   props: {
     isEdit: {
       type: Boolean,
@@ -199,7 +198,7 @@ export default {
     this.tempRoute = Object.assign({}, this.$route)
   },
   beforeDestroy() {
-    clearInterval(this.tmpSaveArticleTimer)
+    // clearInterval(this.tmpSaveArticleTimer)
     const editor = this.editor
     if (editor == null) return
     editor.destroy() // 组件销毁时，及时销毁编辑器
@@ -233,8 +232,8 @@ export default {
     },
     fetchSystemSetting() {
       fetchSystemSetting().then(response => {
-        const autoSaveInterval = response.data.autoSaveArticleTimeIntervalMinutes * 60 * 1000
-        this.tmpSaveArticleTimer = setInterval(this.submitTmpArticleForm, autoSaveInterval)
+        // const autoSaveInterval = response.data.autoSaveArticleTimeIntervalMinutes * 60 * 1000
+        // this.tmpSaveArticleTimer = setInterval(this.submitTmpArticleForm, autoSaveInterval)
       }).catch(err => {
         console.log(err)
       })
@@ -253,7 +252,7 @@ export default {
       this.$refs.postForm.validate(valid => {
         if (valid) {
           this.loading = true
-          createArticle(this.postForm).then(response => {
+          saveArticle(this.postForm).then(response => {
             this.$notify({
               title: '成功',
               message: '发布文章成功',
